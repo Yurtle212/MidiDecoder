@@ -3,6 +3,12 @@ from mido import MidiFile
 
 
 def decode_midi(midi_path):
+    """
+    Turn a midi track into a list of tuples
+
+    :param midi_path: string
+    :return: list
+    """
     midi = MidiFile(midi_path, clip=True)
     final_array = []
     for note in midi.play():
@@ -17,11 +23,25 @@ def decode_midi(midi_path):
 
 
 def write_to_file(path, text):
+    """
+    Write something to a file.
+
+    :param path: string
+    :param text: any
+    :return: None
+    """
     with open(path, "w") as file:
         file.write(str(text))
 
 
 def main(midi_path, output_path):
+    """
+    Drives to program
+
+    :param midi_path: string
+    :param output_path: string
+    :return: None
+    """
     midi_array = decode_midi(midi_path)
     write_to_file(output_path, midi_array)
 
